@@ -7,6 +7,7 @@ import Landing from "./MainWebsite/Pages/Landing";
 import Map from "./MainWebsite/Pages/Map";
 import Profile from "./MainWebsite/Pages/Profile";
 import Schedule from "./MainWebsite/Pages/Schedule";
+import AdminPanel from "./MainWebsite/Pages/AdminPanel";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
           <Route path="/Map" element={<Map />} />
           <Route path="/Profile" element={<Profile />} />
           <Route path="/Schedule" element={<Schedule />} />
+          <Route path="/AdminPanel" element={<AdminPanel />} />
         </Routes>
       </BrowserRouter>
     </div>
