@@ -11,19 +11,19 @@ const SideBar =()=>{
             <div className="links flex column center ">
             <ul>
                 <li className="items flex ">
-                    <FontAwesomeIcon icon={faBars} className="icon1" style={{color: "#ffffff", fontSize : "25px"}} />
+                    {/* <FontAwesomeIcon icon={faBars} className="icon1" style={{color: "#ffffff", fontSize : "25px"}} /> */}
                     <h2>Dashboard</h2>
                 </li>
                 <li className="items flex">
-                    <FontAwesomeIcon icon={faBuilding}  className="icon2" style={{color: "#ffffff", fontSize : "25px"}} />
+                    {/* <FontAwesomeIcon icon={faBuilding}  className="icon2" style={{color: "#ffffff", fontSize : "25px"}} /> */}
                     <h2>Branches</h2>
                 </li>
                 <li className="items flex">
-                    <FontAwesomeIcon icon={faCoins}  className="icon3" style={{color: "#ffffff", fontSize : "25px"}} />
+                    {/* <FontAwesomeIcon icon={faCoins}  className="icon3" style={{color: "#ffffff", fontSize : "25px"}} /> */}
                     <h2>Coins</h2>
                 </li>
                 <li className="items flex">
-                    <FontAwesomeIcon icon={faUser}  className="icon4" style={{color: "#ffffff", fontSize : "25px"}} />
+                    {/* <FontAwesomeIcon icon={faUser}  className="icon4" style={{color: "#ffffff", fontSize : "25px"}} /> */}
                     <h2>Manager</h2>
                 </li>
             </ul>
