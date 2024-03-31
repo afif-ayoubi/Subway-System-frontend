@@ -1,0 +1,17 @@
+.features{
+   flex: 2;
+   height: fit-content;
+   /* background-color:#003059; */
+   padding: 10px;
+
+}
+.title{
+    justify-content: space-between;
+    color: black;
+}
+.bottom{
+    padding: 20px;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+}
