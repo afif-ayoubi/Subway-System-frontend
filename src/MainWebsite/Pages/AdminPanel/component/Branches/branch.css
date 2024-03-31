@@ -1,0 +1,58 @@
+.main-container{
+    width: 80%;
+    height: 100vch;
+    /* background-color: red; */
+    /* justify-content: space-between; */
+    padding: 10px;
+    gap: 30px;
+}
+.heading{
+    justify-content: space-between;
+}
+.heading button{
+    padding: 10px 20px;
+    background-color: #003059;
+    color: white;
+}
+table button {
+    padding: 7px 15px;
+    background-color: red;
+    color: white;
+}
+table {
+    width: 100%;
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+  
+th, td {
+    padding: 10px;
+    border-bottom: 1px solid rgb(205, 205, 205);
+    text-align: left;
+}
+  
+th {
+    background-color: rgb(237, 237, 237);
+}
+  
+tr:hover {
+    background-color: white;
+}
+  
+button {
+    margin: 4px;
+
+}
+.pages{
+    /* background-color: red; */
+    justify-content: end;
+    gap: 10px;
+}
+
+.pages button{
+    padding: 7px 15px;
+    
+}
+.pages span{
+    padding-top: 10px;
+}
