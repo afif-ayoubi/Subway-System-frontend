@@ -1,20 +1,24 @@
 import React, { useState } from "react";
 import "./modal.css"
 
-const  Modal = ({create})=> {
+const  Modal = ({onclose})=> {
   return (
-    <div className="modal flex column ">
-      <div className="modal-content">
+    <div className="modal flex column center ">
+      <div className="modal-content flex column ">
         <span className="close"></span>
-          <h2>Create New Branch</h2>
-            <form>
+          <h2 className="flex center">Create New Branch</h2>
+            <form className="flex column center">
               <input type="text" name="id" placeholder="ID" />
               <input type="text" name="name" placeholder="Name"  />
               <input type="text" name="address" placeholder="Address"  />
               <input type="text" name="managerEmail" placeholder="Manager Email"  />
               <input type="text" name="status" placeholder="Status" />
               <input type="text" name="capacity" placeholder="Capacity"  />
-               <button type="submit">Create</button>
+              <div className="btns flex center">
+                 <button type="submit" className="add">Create</button>
+               <button onClick={onclose} className="del">Close</button>
+              </div>
+              
             </form>
       </div>
      </div>
