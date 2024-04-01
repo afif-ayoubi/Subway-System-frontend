@@ -20,6 +20,14 @@ color: white;
     /* background-color: aqua; */
     gap: 15px;
 }
+.links button{
+    padding: 20px 30px;
+    font-size: 15px;
+    border: none;
+    outline: none;
+    background-color: #003059;
+    color: white;
+}
 
 .main-dashborad{
     width: 80%;
