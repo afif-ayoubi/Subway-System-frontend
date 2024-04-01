@@ -16,20 +16,20 @@ const SideBar =()=>{
             </div>
             <div className="links flex column center ">
             <ul>
-                <button className="items flex " onClick={() =>navigate('/dashboard')}>
+                <li className="items flex " onClick={() =>navigate('/dashboard')}>
                 <h3>Dashboard</h3>
                     
-                </button>
-                <button className="items flex">
+                </li>
+                <li className="items flex">
             
                     <h3>Stations</h3>
-                </button>
-                <button className="items flex">
+                </li>
+                <li className="items flex">
                           <h3>Coins</h3>
-                </button>
-                <button className="items flex">
+                </li>
+                <li className="items flex">
                      <h3>Manager</h3>
-                </button>
+                </li>
             </ul>
             </div>
         </div>
