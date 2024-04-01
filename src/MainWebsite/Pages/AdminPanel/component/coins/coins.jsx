@@ -30,9 +30,7 @@ const Coins = ()=>{
     const PageChange = (page) => {
         setCurrentPage(page);
     };
-    const Delete = (id) => {
-        setRows(prevRows => prevRows.filter(row => row.id !== id));
-    };
+
 
     const startIndex = (currentPage - 1) * pageSize;
     const endIndex = startIndex + pageSize;
@@ -74,7 +72,7 @@ const Coins = ()=>{
                         <td>{row.status}</td>
                         <td>{row.capacity}</td>
                         <td>
-                            <button onClick={() => Delete(row.id)}>Accept</button>
+                            <button>Accept</button>
                             <button >Reject</button>
                         </td>
                     </tr>

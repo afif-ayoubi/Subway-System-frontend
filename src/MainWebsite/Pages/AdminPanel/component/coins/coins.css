@@ -2,4 +2,9 @@
     /* background-color: gray; */
     width: 100%;
     gap: 20px;
+    padding: 10px;
+}
+
+.Coins-container{
+    width: 95%
 }
