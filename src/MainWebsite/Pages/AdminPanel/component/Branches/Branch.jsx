@@ -47,9 +47,10 @@ const Branches = ()=>{
             <button onClick={()=>{setShow(true)}}>Create</button>
         </div>
     </div>
-   {/* { show && <Modal />} */}
+   { show && <Modal onclose = {() => setShow(false)}/>}
 
-    
+   {!show && (
+                <>
     <div className="table-container">
         <table>
             <thead>
@@ -87,7 +88,8 @@ const Branches = ()=>{
         <span>{currentPage} of {totalPages}</span>
         <button onClick={() => PageChange(currentPage + 1)} disabled={currentPage === totalPages}>Next</button>
     </div>
-
+    </>
+            )}
 </div>
 
     )
