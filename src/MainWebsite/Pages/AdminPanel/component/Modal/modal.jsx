@@ -6,14 +6,13 @@ const  Modal = ({onclose})=> {
     <div className="modal flex column center ">
       <div className="modal-content flex column ">
         <span className="close"></span>
-          <h2 className="flex center">Create New Branch</h2>
+          <h2 className="flex center">Create New Station</h2>
             <form className="flex column center">
-              <input type="text" name="id" placeholder="ID" />
               <input type="text" name="name" placeholder="Name"  />
               <input type="text" name="address" placeholder="Address"  />
               <input type="text" name="managerEmail" placeholder="Manager Email"  />
               <input type="text" name="status" placeholder="Status" />
-              <input type="text" name="capacity" placeholder="Capacity"  />
+              <input type="text" name="operation" placeholder="Operation Hours"  />
               <div className="btns flex center">
                  <button type="submit" className="add">Create</button>
                <button onClick={onclose} className="del">Close</button>
