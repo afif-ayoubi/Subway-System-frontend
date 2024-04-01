@@ -42,7 +42,7 @@ const Branches = ()=>{
     return (
         <div className="main-container flex column">
     <div className="heading flex">
-        <h1>Branch</h1>
+        <h1>Stations</h1>
         <div>
             <button onClick={()=>{setShow(true)}}>Create</button>
         </div>
@@ -55,13 +55,15 @@ const Branches = ()=>{
         <table>
             <thead>
                 <tr>
-                    <th>Branch ID</th>
                     <th>Branch Name</th>
                     <th>Address</th>
                     <th>Manager Email</th>
                     <th>Status</th>
-                    <th>Capacity</th>
-                    <th>Action</th>
+                    {/* <th></th>
+                    <th></th> */}
+                    <th colSpan="4">Action</th>
+                    {/* <th></th>
+                    <th></th> */}
                 </tr>
             </thead>
             <tbody>
