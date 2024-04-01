@@ -1,8 +1,14 @@
 import React from "react";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faEnvelope, faBars , faBuilding,faCoins, faUser} from '@fortawesome/free-solid-svg-icons'
+import { useNavigate } from "react-router-dom";
+import Dashboard from "../Dashborad/dashboard";
+import { useState } from "react";
+
 
 const SideBar =()=>{
+    const [show,setShow] = useState(false)
+    const navigate = useNavigate()
     return(
         <div className="side-bar">
             <div className="img flex center">
@@ -10,22 +16,20 @@ const SideBar =()=>{
             </div>
             <div className="links flex column center ">
             <ul>
-                <li className="items flex ">
-                    {/* <FontAwesomeIcon icon={faBars} className="icon1" style={{color: "#ffffff", fontSize : "25px"}} /> */}
-                    <h2>Dashboard</h2>
-                </li>
-                <li className="items flex">
-                    {/* <FontAwesomeIcon icon={faBuilding}  className="icon2" style={{color: "#ffffff", fontSize : "25px"}} /> */}
-                    <h2>Branches</h2>
-                </li>
-                <li className="items flex">
-                    {/* <FontAwesomeIcon icon={faCoins}  className="icon3" style={{color: "#ffffff", fontSize : "25px"}} /> */}
-                    <h2>Coins</h2>
-                </li>
-                <li className="items flex">
-                    {/* <FontAwesomeIcon icon={faUser}  className="icon4" style={{color: "#ffffff", fontSize : "25px"}} /> */}
-                    <h2>Manager</h2>
-                </li>
+                <button className="items flex " onClick={() =>navigate('/dashboard')}>
+                <h3>Dashboard</h3>
+                    
+                </button>
+                <button className="items flex">
+            
+                    <h3>Stations</h3>
+                </button>
+                <button className="items flex">
+                          <h3>Coins</h3>
+                </button>
+                <button className="items flex">
+                     <h3>Manager</h3>
+                </button>
             </ul>
             </div>
         </div>
