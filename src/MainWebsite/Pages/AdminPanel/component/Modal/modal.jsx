@@ -10,6 +10,12 @@ const  Modal = ({onclose})=> {
             <form className="flex column center">
               <input type="text" name="name" placeholder="Name"  />
               <input type="text" name="address" placeholder="Address"  />
+              <select name=" Select Manager" id="" className="select">
+                <option value="">Manaher1</option>
+                <option value="">Manaher1</option>
+                <option value="">Manaher1</option>
+                <option value="">Manaher1</option>
+              </select>
               <input type="text" name="managerEmail" placeholder="Manager Email"  />
               <input type="text" name="status" placeholder="Status" />
               <input type="text" name="operation" placeholder="Operation Hours"  />
