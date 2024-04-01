@@ -6,7 +6,7 @@ const Branches = ()=>{
     const [rows, setRows] = useState([]);
     const [currentPage, setCurrentPage] = useState(1);
     const [show,setShow] = useState(false)
-    const pageSize = 9;
+    const pageSize = 7;
  
 
 
