@@ -52,20 +52,17 @@ const Coins = ()=>{
         <table>
             <thead>
                 <tr>
-                    <th>Coin ID</th>
-                    <th>User ID</th>
+                    <th>Name</th>
+                    <th>Email</th>
                     <th>Amount</th>
                     <th>Status</th>
-                    <th>Time</th>
-                    <th>created</th>
-                    
                     <th>Action</th>
                 </tr>
             </thead>
             <tbody>
                 {displayRows.map(row => (
                     <tr key={row.id}>
-                        <td>{row.id}</td>
+                        {/* <td>{row.id}</td> */}
                         <td>{row.name}</td>
                         <td>{row.address}</td>
                         <td>{row.managerEmail}</td>
