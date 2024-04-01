@@ -21,6 +21,8 @@ color: white;
     gap: 15px;
 }
 .links button{
+    width: fit-content;
+    height: fit-content;
     padding: 20px 30px;
     font-size: 15px;
     border: none;
