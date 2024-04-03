@@ -2,11 +2,14 @@ import React from "react";
 import { useState,useEffect } from "react";
 import ChatPopup from "../chats/Chat";
 import './station.css'
+import EditPopup from "../../component/Modal/stationModal";
 
 const Stations = ()=>{
     const [rows, setRows] = useState([]);
     const [currentPage, setCurrentPage] = useState(1);
     const [show,setShow] = useState(false)
+    const [showpop,setShowPop] = useState(false)
+    
     const pageSize = 7;
  
 
@@ -39,14 +42,19 @@ const Stations = ()=>{
     const endIndex = startIndex + pageSize;
     const displayRows = rows.slice(startIndex, endIndex);
 
+    const togglePopup = () => {
+        setShowPop(!showpop);
+    };
 
     return (
+        
         <div className="main-container flex column">
     <div className="heading flex">
         <h1>Stations</h1>
     </div>
-
-    <div className="r">
+{!showpop && (
+            <>
+    <div className="station-containe">
         <table>
             <thead>
                 <tr>
@@ -67,7 +75,7 @@ const Stations = ()=>{
                         <td>{row.status}</td>
                         <td>{row.status}</td>
                         <td className="actions">
-                            <button onClick={() => Delete(row.id)}>Edit</button>
+                            <button onClick={togglePopup}>Edit</button>
                         </td>
                     </tr>
                 ))}
@@ -81,6 +89,9 @@ const Stations = ()=>{
         <button onClick={() => PageChange(currentPage + 1)} disabled={currentPage === totalPages}>Next</button>
     </div>
     <ChatPopup />
+     </>
+            )}
+            {showpop && <EditPopup onClose={togglePopup} />}
 </div>
 
     )
