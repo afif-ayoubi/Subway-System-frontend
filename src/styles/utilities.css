@@ -105,3 +105,12 @@ button {
 .border-radius-l2 {
     border-radius: 11px;
 }
+.small-width{
+    width: 120px;
+}
+.big-width{
+    width: 200px;
+}
+.button-height{
+    height: 50px;
+}
