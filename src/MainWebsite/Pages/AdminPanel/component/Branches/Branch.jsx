@@ -5,7 +5,7 @@ import ChatPopup from "../../ManagerPane;/chats/Chat";
 import './branch.css'
 
 const Branches = ()=>{
-    const [rows, setRows] = useState([]);
+    const [stations, setStations] = useState([])
     const [currentPage, setCurrentPage] = useState(1);
     const [show,setShow] = useState(false)
     const pageSize = 7;
@@ -15,9 +15,13 @@ const Branches = ()=>{
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await fetch('https://jsonplaceholder.typicode.com/todos/');
+                const response = await fetch('http://127.0.0.1:8000/api/get-all-stations',{
+                    headers : {
+                        Authorization: `Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vMTI3LjAuMC4xOjgwMDAvYXBpL2xvZ2luIiwiaWF0IjoxNzEyMTgxMTQ1LCJleHAiOjE3MTIxODQ3NDUsIm5iZiI6MTcxMjE4MTE0NSwianRpIjoiaWlGd0JhUmVBZktuYmQ3ZyIsInN1YiI6IjE4IiwicHJ2IjoiMjNiZDVjODk0OWY2MDBhZGIzOWU3MDFjNDAwODcyZGI3YTU5NzZmNyJ9.2tP7EHcu6Aq_4_tEgOyBhbdVadH0gkwX0fg8eMKwpKo`
+                    }
+                });
                 const data = await response.json();
-                setRows(data);
+                setStations(data.stations);
             } catch (error) {
                 console.error('Error fetching data:', error);
             }
@@ -27,18 +31,18 @@ const Branches = ()=>{
     }, []);
     
 
-    const totalPages = Math.ceil(rows.length / pageSize);
+    const totalPages = Math.ceil(stations.length / pageSize);
 
     const PageChange = (page) => {
         setCurrentPage(page);
     };
     const Delete = (id) => {
-        setRows(prevRows => prevRows.filter(row => row.id !== id));
+        setStations(prevStations => prevStations.filter(stations => stations.id !== id));
     };
 
     const startIndex = (currentPage - 1) * pageSize;
     const endIndex = startIndex + pageSize;
-    const displayRows = rows.slice(startIndex, endIndex);
+    const displayStations = stations.slice(startIndex, endIndex);
 
 
     return (
@@ -59,27 +63,24 @@ const Branches = ()=>{
                 <tr>
                     <th>Name</th>
                     <th>Address</th>
-                    <th>Manager Email</th>
+                    <th>Operation</th>
+                    <th>Facilities</th>
                     <th>Status</th>
-                    {/* <th></th>
-                    <th></th> */}
                     <th colSpan="4">Action</th>
-                    {/* <th></th>
-                    <th></th> */}
                 </tr>
             </thead>
             <tbody>
-                {displayRows.map(row => (
-                    <tr key={row.id}>
-                        <td>{row.id}</td>
-                        <td>{row.name}</td>
-                        <td>{row.address}</td>
-                        <td>{row.managerEmail}</td>
-                        <td>{row.status}</td>
-                        <td>{row.capacity}</td>
+                {displayStations.map(stations => (
+                    <tr key={stations.id}>
+
+                        <td>{stations.name}</td>
+                        <td>{stations.address}</td>
+                        <td>{stations.operating_hours}</td>
+                        <td>{stations.facilities}</td>
+                        <td>{stations.service_status}</td>
                         <td className="actions"> 
                             <button >ShutDown</button>
-                            <button onClick={() => Delete(row.id)}>Remove</button>
+                            <button onClick={() => Delete(stations.id)}>Remove</button>
                         </td>
                     </tr>
                 ))}
