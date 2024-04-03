@@ -64,18 +64,19 @@ export const Title = styled.h1`
 `;
 
 export const Input = styled.input`
-  background-color: #eee;
+  background-color: #edeced;
   border: none;
   padding: 12px 15px;
   margin: 8px 0;
   width: 100%;
+  border-radius: 5px;
 `;
 
 export const Button = styled.button`
-  border-radius: 20px;
-  border: 1px solid #ff4b2b;
-  background-color: #ff4b2b;
-  color: #ffffff;
+  border-radius: 10px;
+
+  background-color: #f4d03f;
+  color: #000000;
   font-size: 12px;
   font-weight: bold;
   padding: 12px 45px;
@@ -90,13 +91,17 @@ export const Button = styled.button`
   }
 `;
 export const GhostButton = styled(Button)`
+  border: 1px solid;
+
   background-color: transparent;
   border-color: #ffffff;
+  color: #ffffff;
 `;
 
 export const Anchor = styled.a`
-  color: #333;
-  font-size: 14px;
+  color: #a7d3ec;
+  font-weight: semi-bold;
+  font-size: 16px;
   text-decoration: none;
   margin: 15px 0;
 `;

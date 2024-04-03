@@ -12,7 +12,7 @@ const Authentication = () => {
             <Components.Input type="text" placeholder="Name" />
             <Components.Input type="email" placeholder="Email" />
             <Components.Input type="password" placeholder="Password" />
-            <Components.Button>Sign Up</Components.Button>
+            <Components.Button textColor="black">Sign Up</Components.Button>
           </Components.Form>
         </Components.SignUpContainer>
 
