@@ -5,9 +5,8 @@ import './station.css'
 import EditPopup from "../../component/Modal/stationModal";
 
 const Stations = ()=>{
-    const [rows, setRows] = useState([]);
+    const [stations, setStations] = useState([]);
     const [currentPage, setCurrentPage] = useState(1);
-    const [show,setShow] = useState(false)
     const [showpop,setShowPop] = useState(false)
     
     const pageSize = 7;
@@ -17,9 +16,13 @@ const Stations = ()=>{
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await fetch('https://jsonplaceholder.typicode.com/todos/');
+                const response = await fetch('http://127.0.0.1:8000/api/get-all-stations',{
+                    headers : {
+                        Authorization: `Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vMTI3LjAuMC4xOjgwMDAvYXBpL2xvZ2luIiwiaWF0IjoxNzEyMTgxMTQ1LCJleHAiOjE3MTIxODQ3NDUsIm5iZiI6MTcxMjE4MTE0NSwianRpIjoiaWlGd0JhUmVBZktuYmQ3ZyIsInN1YiI6IjE4IiwicHJ2IjoiMjNiZDVjODk0OWY2MDBhZGIzOWU3MDFjNDAwODcyZGI3YTU5NzZmNyJ9.2tP7EHcu6Aq_4_tEgOyBhbdVadH0gkwX0fg8eMKwpKo`
+                    }
+                });
                 const data = await response.json();
-                setRows(data);
+                setStations(data.stations);
             } catch (error) {
                 console.error('Error fetching data:', error);
             }
@@ -29,18 +32,16 @@ const Stations = ()=>{
     }, []);
     
 
-    const totalPages = Math.ceil(rows.length / pageSize);
+    const totalPages = Math.ceil(stations.length / pageSize);
 
     const PageChange = (page) => {
         setCurrentPage(page);
     };
-    const Delete = (id) => {
-        setRows(prevRows => prevRows.filter(row => row.id !== id));
-    };
+
 
     const startIndex = (currentPage - 1) * pageSize;
     const endIndex = startIndex + pageSize;
-    const displayRows = rows.slice(startIndex, endIndex);
+    const displayStations = stations.slice(startIndex, endIndex);
 
     const togglePopup = () => {
         setShowPop(!showpop);
@@ -61,19 +62,19 @@ const Stations = ()=>{
                     <th>Name</th>
                     <th>Address</th>
                     <th>Operations</th>
-                    <th>Status</th>
                     <th>Facilities</th>
+                    <th>Status</th>
                     <th colSpan="4">Action</th>
                 </tr>
             </thead>
             <tbody>
-                {displayRows.map(row => (
-                    <tr key={row.id}>
-                        <td>{row.name}</td>
-                        <td>{row.address}</td>
-                        <td>{row.managerEmail}</td>
-                        <td>{row.status}</td>
-                        <td>{row.status}</td>
+                {displayStations.map(stations => (
+                    <tr key={stations.id}>
+                        <td>{stations.name}</td>
+                        <td>{stations.address}</td>
+                        <td>{stations.operating_hours}</td>
+                        <td>{stations.facilities}</td>
+                        <td>{stations.service_status}</td>
                         <td className="actions">
                             <button onClick={togglePopup}>Edit</button>
                         </td>
