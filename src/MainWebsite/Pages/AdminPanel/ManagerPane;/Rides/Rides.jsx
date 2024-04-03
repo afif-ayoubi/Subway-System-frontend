@@ -1,6 +1,9 @@
 import React from "react";
 import { useState,useEffect } from "react";
 import Modal from "../../component/Modal/modal";
+import ChatPopup from "../chats/Chat";
+import './rides.css'
+import RideModal from "../../component/Modal/RideMoald";
 
 const Rides = ()=>{
     const [rows, setRows] = useState([]);
@@ -25,6 +28,7 @@ const Rides = ()=>{
     }, []);
     
 
+
     const totalPages = Math.ceil(rows.length / pageSize);
 
     const PageChange = (page) => {
@@ -40,30 +44,28 @@ const Rides = ()=>{
 
 
     return (
-        <div className="main-container flex column">
+        <div className="ride flex column ">
     <div className="heading flex">
         <h1>Rides</h1>
         <div>
             <button onClick={()=>{setShow(true)}}>Create</button>
         </div>
     </div>
-   { show && <Modal onclose = {() => setShow(false)}/>}
+   { show && <RideModal onclose = {() => setShow(false)}/>}
 
    {!show && (
                 <>
-    <div className="table-container">
+    <div className="Ride-container">
         <table>
             <thead>
                 <tr>
+                    <th>Departure Time</th>
                     <th>Arrival Time</th>
-                    <th>Dep Time</th>
-                    
+                    <th>Departure Location</th>
+                    <th> Arrival Location</th>
                     <th>Status</th>
-                    {/* <th></th>
-                    <th></th> */}
                     <th colSpan="4">Action</th>
-                    {/* <th></th>
-                    <th></th> */}
+
                 </tr>
             </thead>
             <tbody>
@@ -75,8 +77,9 @@ const Rides = ()=>{
                         <td>{row.managerEmail}</td>
                         <td>{row.status}</td>
                         <td>{row.capacity}</td>
-                        <td>
+                        <td className="actions">
                             <button onClick={() => Delete(row.id)}>Remove</button>
+                            <button onClick={() => Delete(row.id)}>Edite</button>
                             
                         </td>
                     </tr>
@@ -89,9 +92,11 @@ const Rides = ()=>{
         <button onClick={() => PageChange(currentPage - 1)} disabled={currentPage === 1}>Previous</button>
         <span>{currentPage} of {totalPages}</span>
         <button onClick={() => PageChange(currentPage + 1)} disabled={currentPage === totalPages}>Next</button>
-    </div>
+    </div> 
+        <ChatPopup />
     </>
             )}
+           
 </div>
 
     )

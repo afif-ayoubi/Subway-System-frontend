@@ -6,7 +6,7 @@ const Coins = ()=>{
     const [rows, setRows] = useState([]);
     const [currentPage, setCurrentPage] = useState(1);
     const [show,setShow] = useState(false)
-    const pageSize = 9;
+    const pageSize = 7;
  
 
 
@@ -56,7 +56,7 @@ const Coins = ()=>{
                     <th>Email</th>
                     <th>Amount</th>
                     <th>Status</th>
-                    <th>Action</th>
+                    <th colSpan="4">Action</th>
                 </tr>
             </thead>
             <tbody>
@@ -68,8 +68,8 @@ const Coins = ()=>{
                         <td>{row.managerEmail}</td>
                         <td>{row.status}</td>
                         <td>{row.capacity}</td>
-                        <td>
-                            <button>Accept</button>
+                        <td className="actions">
+                            <button className="accept">Accept</button>
                             <button >Reject</button>
                         </td>
                     </tr>

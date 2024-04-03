@@ -1,6 +1,8 @@
 import React from "react";
 import { useState,useEffect } from "react";
 import Modal from "../Modal/modal";
+import ChatPopup from "../../ManagerPane;/chats/Chat";
+import './branch.css'
 
 const Branches = ()=>{
     const [rows, setRows] = useState([]);
@@ -40,7 +42,7 @@ const Branches = ()=>{
 
 
     return (
-        <div className="main-container flex column">
+        <div className="branch flex column">
     <div className="heading flex">
         <h1>Stations</h1>
         <div>
@@ -51,11 +53,11 @@ const Branches = ()=>{
 
    {!show && (
                 <>
-    <div className="table-container">
+    <div className="branch-container">
         <table>
             <thead>
                 <tr>
-                    <th>Branch Name</th>
+                    <th>Name</th>
                     <th>Address</th>
                     <th>Manager Email</th>
                     <th>Status</th>
@@ -75,9 +77,9 @@ const Branches = ()=>{
                         <td>{row.managerEmail}</td>
                         <td>{row.status}</td>
                         <td>{row.capacity}</td>
-                        <td>
-                            <button onClick={() => Delete(row.id)}>Remove</button>
+                        <td className="actions"> 
                             <button >ShutDown</button>
+                            <button onClick={() => Delete(row.id)}>Remove</button>
                         </td>
                     </tr>
                 ))}
@@ -92,6 +94,7 @@ const Branches = ()=>{
     </div>
     </>
             )}
+            <ChatPopup />
 </div>
 
     )

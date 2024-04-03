@@ -3,6 +3,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faEnvelope, faBars } from '@fortawesome/free-solid-svg-icons'
 import Charts from "../charts/charts";
 import Features from "../charts/feature";
+import './dashboard.css'
 
 const Dashboard = ()=>{
     

@@ -7,7 +7,7 @@ const Manager =()=>{
     const [rows, setRows] = useState([]);
     const [currentPage, setCurrentPage] = useState(1);
     const [show,setShow] = useState(false)
-    const pageSize = 9;
+    const pageSize = 7;
  
 
 
@@ -37,7 +37,7 @@ const Manager =()=>{
 
     return (
         <div className="manager-container flex  column ">
-            <div className="heading flex center">
+            <div className="heading flex ">
                 <h1>Manager</h1>
                 <div>
                      <button onClick={()=>{setShow(true)}}>Add</button>
@@ -71,7 +71,7 @@ const Manager =()=>{
                             <td>{row.status}</td>
                             <td>{row.capacity}</td>
                             <td>
-                                <button >disable</button>
+                                <button >Disable</button>
                             </td>
                         </tr>
                     ))}

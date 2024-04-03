@@ -4,6 +4,7 @@ import { faEnvelope, faBars , faBuilding,faCoins, faUser} from '@fortawesome/fre
 import { useNavigate } from "react-router-dom";
 import Dashboard from "../Dashborad/dashboard";
 import { useState } from "react";
+import "./sidebar.css"
 
 
 const SideBar =()=>{

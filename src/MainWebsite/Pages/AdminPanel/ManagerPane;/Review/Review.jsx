@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from "react";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faStar } from '@fortawesome/free-solid-svg-icons';
 
 const Review = () => {
     const [rows, setRows] = useState([]);
     const [currentPage, setCurrentPage] = useState(1);
-    const pageSize = 6;
+    const pageSize = 4;
 
     useEffect(() => {
         const fetchData = async () => {
@@ -34,24 +36,45 @@ const Review = () => {
     const displayRows = rows.slice(startIndex, endIndex);
 
     return (
-        <div className="rev flex column  ">
-            <div className="heading-rev">
+        <div className="rev flex column  center">
+            <div className="heading-rev flex">
                 <h2>Reviews</h2>
             </div>
-            <div className=" cardss flex ">
-                {displayRows.map(row => (
-                    <div className="review-card" key={row.id}>
-                        <h3>{row.title}</h3>
-                        <p>{row.body}</p>
-                        <div className="dele">
-                            <button  onClick={() => Delete(row.id)}>Delete</button>
+            <div className=" cardss flex center ">
+               
+                    {displayRows.map(row =>( <div className="card-review flex column">
+                         <div className="user-review flex">
+                        <div>
+                            <h2>{row.title}</h2>
                         </div>
-                       
+                        <div>
+
+                        <img src="https://ps.w.org/user-avatar-reloaded/assets/icon-256x256.png?rev=2540745" alt="" />
+                        </div>
                     </div>
-                ))}
+                    
+                    <div className="comment">
+                        <p>{row.body}</p>
+                    </div>
+                    
+                    <div className="btn flex ">
+                        <div>
+                        <FontAwesomeIcon icon={faStar} style={{color: "#FFD43B",}} />
+                        <FontAwesomeIcon icon={faStar} style={{color: "#FFD43B",}} />
+                        <FontAwesomeIcon icon={faStar} style={{color: "#FFD43B",}} />
+                        <FontAwesomeIcon icon={faStar} style={{color: "#FFD43B",}} />
+                        <FontAwesomeIcon icon={faStar} style={{color: "#FFD43B",}} />
+                        </div>
+                        
+                        <button onClick={() => Delete(row.id)}>delete</button>
+                    </div>
+                </div>
+                    ))}
+                   
             </div>
 
-            <div className="pages flex">
+
+            <div className="pages flex ">
                 <button onClick={() => PageChange(currentPage - 1)} disabled={currentPage === 1}>Previous</button>
                 <span>{currentPage} of {totalPages}</span>
                 <button onClick={() => PageChange(currentPage + 1)} disabled={currentPage === totalPages}>Next</button>

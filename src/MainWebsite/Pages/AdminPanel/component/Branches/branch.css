@@ -1,10 +1,13 @@
-.main-container{
+.branch{
     width: 80%;
-    height: 100vch;
-    /* background-color: red; */
-    /* justify-content: space-between; */
-    padding: 10px;
-    gap: 30px;
+    height: auto;
+    background-color: #f0f0f0;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
 }
 .heading{
     justify-content: space-between;
@@ -19,29 +22,32 @@ table button {
     background-color: red;
     color: white;
 }
-table {
-    width: 100%;
+
+.branch-container {
+    margin-left: 0;
     border-collapse: collapse;
-    border-spacing: 0;
+    width: 100%;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
-.table-container th[colspan="4"] {
+
+.branch-container th,
+.branch-container td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+.branch-container th[colspan="4"] {
     text-align: center;
     vertical-align: middle;
-  }
+}
 
-  
-th, td {
-    padding: 10px;
-    border-bottom: 1px solid rgb(205, 205, 205);
-    text-align: left;
-}
-  
-th {
-    background-color: rgb(237, 237, 237);
-}
-  
-tr:hover {
-    background-color: white;
+.actions {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
 }
   
 button {
