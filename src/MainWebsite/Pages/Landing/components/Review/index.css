@@ -1,0 +1,24 @@
+.review-section {
+    height: 60vh;
+    background-color: #003059;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+}
+
+.review-section .title {
+    color: #a7d3ec;
+    font-size: 2rem;
+    font-weight: 600;
+    text-align: center;
+}
+
+.rev-cards {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+}
