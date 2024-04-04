@@ -1,20 +1,30 @@
-import React from "react"
-import ListCard from '../../../../Components/ListCard'
-import './index.css'
+import React from "react";
+import ListCard from '../../../../Components/ListCard';
+import './index.css';
 
-const index = () => {
+const Index = ({ stations }) => {
+
+  if (!stations || stations.length === 0) {
+    return <div>No stations available</div>;
+  }
+
   return (
     <>
-      <section class="cards-table">
+      <section className="cards-table">
         <h2>Stations List</h2>
-        <div class="table">
-          <ListCard />
-          <ListCard col_1={"B Station"} col_2={"Beirut"} col_3={"24 / 7"} col_4={"Operational"}/>
-          <ListCard col_1={"NYC Station"} col_2={"NewYorkCity"} col_3={"24 / 7"} col_4={"Under Maintenance"}/>
-          <ListCard col_1={"Rio"} col_2={"Brasil"} col_3={"9 / 5"} col_4={"Operational"}/>
+        <div className="table">
+          {stations.map(station => (
+            <ListCard
+              key={station.id}
+              col_1={station.name}
+              col_2={station.address}
+              col_3={station.operating_hours}
+              col_4={station.service_status}
+            />
+          ))}
         </div>
       </section>
     </>
-  )
-}
-export default index
+  );
+};
+export default Index
