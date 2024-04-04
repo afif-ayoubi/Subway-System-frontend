@@ -3,4 +3,28 @@
     height: 450px;
     border-radius: 20px;
     background-color: #fff;
+    color: #000000;
+    font-size: 1.4rem;
+    padding-left: 15px;
+}
+
+.review-card .user-name {
+    font-size: 1.8rem;
+    font-weight: 700;
+    padding-top: 15px;
+    padding-bottom: 10px;
+} 
+
+.review-card .review-text {
+    width: 90%;
+    text-align: start;
+    padding-top: 50px;
+    font-size: 1.6rem;
+}
+
+.stars {
+    padding-top: 50px;
+    text-align: center;
+    color: yellow;
+    font-size: 4rem;
 }
