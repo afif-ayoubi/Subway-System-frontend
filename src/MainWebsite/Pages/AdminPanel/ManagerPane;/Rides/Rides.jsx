@@ -6,7 +6,7 @@ import './rides.css'
 import RideModal from "../../component/Modal/RideMoald";
 
 const Rides = ()=>{
-    const [rows, setRows] = useState([]);
+    const [rides, setRides] = useState([]);
     const [currentPage, setCurrentPage] = useState(1);
     const [show,setShow] = useState(false)
     const pageSize = 7;
@@ -16,9 +16,14 @@ const Rides = ()=>{
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await fetch('https://jsonplaceholder.typicode.com/todos/');
+                const response = await fetch('http://127.0.0.1:8000/api/get-all-rides',{
+                    headers : {
+                        Authorization: `Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vMTI3LjAuMC4xOjgwMDAvYXBpL2xvZ2luIiwiaWF0IjoxNzEyMTg5NTgwLCJleHAiOjE3MTIxOTMxODAsIm5iZiI6MTcxMjE4OTU4MCwianRpIjoiRjhqRU8zY0xYZXhqTndPRCIsInN1YiI6IjE4IiwicHJ2IjoiMjNiZDVjODk0OWY2MDBhZGIzOWU3MDFjNDAwODcyZGI3YTU5NzZmNyJ9.PV_x3YuD-0mCPfSvx4xtysLfVeeGn-c3KCAonRPnHOg`
+                    }
+                });
                 const data = await response.json();
-                setRows(data);
+                setRides(data.rides);
+                console.log(data)
             } catch (error) {
                 console.error('Error fetching data:', error);
             }
@@ -29,18 +34,18 @@ const Rides = ()=>{
     
 
 
-    const totalPages = Math.ceil(rows.length / pageSize);
+    const totalPages = Math.ceil(rides.length / pageSize);
 
     const PageChange = (page) => {
         setCurrentPage(page);
     };
     const Delete = (id) => {
-        setRows(prevRows => prevRows.filter(row => row.id !== id));
+        setRides(prevRides => prevRides.filter(rides => rides.id !== id));
     };
 
     const startIndex = (currentPage - 1) * pageSize;
     const endIndex = startIndex + pageSize;
-    const displayRows = rows.slice(startIndex, endIndex);
+    const displayRides = rides.slice(startIndex, endIndex);
 
 
     return (
@@ -69,17 +74,16 @@ const Rides = ()=>{
                 </tr>
             </thead>
             <tbody>
-                {displayRows.map(row => (
-                    <tr key={row.id}>
-                        <td>{row.id}</td>
-                        <td>{row.name}</td>
-                        <td>{row.address}</td>
-                        <td>{row.managerEmail}</td>
-                        <td>{row.status}</td>
-                        <td>{row.capacity}</td>
+                {displayRides.map(rides => (
+                    <tr key={rides.id}>
+                        <td>{rides.departure_time}</td>
+                        <td>{rides.arrival_time}</td>
+                        <td>{rides.departure_station_id}</td>
+                        <td>{rides.arrival_station_id}</td>
+                        <td>{rides.status}</td>
                         <td className="actions">
-                            <button onClick={() => Delete(row.id)}>Remove</button>
-                            <button onClick={() => Delete(row.id)}>Edite</button>
+                            <button onClick={() => Delete(rides.id)}>Remove</button>
+                            <button onClick={() => Delete(rides.id)}>Edite</button>
                             
                         </td>
                     </tr>
