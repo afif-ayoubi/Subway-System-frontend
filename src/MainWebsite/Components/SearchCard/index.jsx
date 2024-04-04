@@ -1,17 +1,28 @@
-import React from "react";
+import React, { useState } from "react";
 import MainButton from "../MainButton";
 import "./index.css";
 
-const index = () => {
+const Index = () => {
+  const [locationButtonValue, setLocationButtonValue] =
+    useState("Get Location");
+
   const handleClick = () => {
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(
-        (position) => {
+        async (position) => {
           const latitude = position.coords.latitude;
           const longitude = position.coords.longitude;
-          console.log("Latitude:", latitude);
-          console.log("Longitude:", longitude);
-          // You can do whatever you want with latitude and longitude here
+
+          try {
+            const response = await fetch(
+              `https://api.bigdatacloud.net/data/reverse-geocode-client?latitude=${latitude}&longitude=${longitude}&localityLanguage=en`
+            );
+            const data = await response.json();
+            const cityName = data.locality;
+            setLocationButtonValue(cityName);
+          } catch (error) {
+            console.error("Error fetching city name:", error.message);
+          }
         },
         (error) => {
           console.error("Error getting geolocation:", error.message);
@@ -25,8 +36,23 @@ const index = () => {
     <>
       <div className="search-card">
         <div className="input-group">
-          <input />
-          <input type="button" onClick={handleClick} value="Get Location" />
+          <div className="station-input">
+            <label htmlFor="stationName">Station Name:</label>
+            <input
+              id="stationName"
+              type="text"
+              placeholder="Enter station name"
+            />
+          </div>
+          <div className="station-input">
+            <label htmlFor="getLocationButton">Location:</label>
+            <input
+              id="getLocationButton"
+              type="button"
+              onClick={handleClick}
+              value={locationButtonValue}
+            />
+          </div>
         </div>
         <div className="btn-search">
           <MainButton text={"search"} width={"small-width"} />
@@ -35,4 +61,4 @@ const index = () => {
     </>
   );
 };
-export default index;
+export default Index;
