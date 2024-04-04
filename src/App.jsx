@@ -21,7 +21,7 @@ function App() {
     <div className="App">
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<Profile />} />
+          <Route path="/" element={<Landing />} />
           <Route path="/Authentication" element={<Authentication />} />
           <Route path="/Booking" element={<Booking />} />
           <Route path="/Map" element={<Map />} />
