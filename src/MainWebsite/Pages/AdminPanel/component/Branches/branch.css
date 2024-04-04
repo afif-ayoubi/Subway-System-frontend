@@ -1,0 +1,70 @@
+.branch{
+    width: 80%;
+    height: auto;
+    background-color: #f0f0f0;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+.heading{
+    justify-content: space-between;
+}
+.heading button{
+    padding: 10px 20px;
+    background-color: #003059;
+    color: white;
+}
+table button {
+    padding: 7px 15px;
+    background-color: red;
+    color: white;
+}
+
+.branch-container {
+    margin-left: 0;
+    border-collapse: collapse;
+    width: 100%;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.branch-container th,
+.branch-container td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+.branch-container th[colspan="4"] {
+    text-align: center;
+    vertical-align: middle;
+}
+
+.actions {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}
+  
+button {
+    margin: 4px;
+    border-radius: 10px;
+
+}
+.pages{
+    /* background-color: red; */
+    justify-content: end;
+    gap: 10px;
+}
+
+.pages button{
+    padding: 7px 15px;
+    
+}
+.pages span{
+    padding-top: 10px;
+}
