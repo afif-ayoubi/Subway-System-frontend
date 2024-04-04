@@ -4,9 +4,11 @@ import ChatPopup from "../chats/Chat";
 import './station.css'
 import EditPopup from "../../component/Modal/stationModal";
 
+
 const Stations = ()=>{
     const [stations, setStations] = useState([]);
     const [currentPage, setCurrentPage] = useState(1);
+
     const [showpop,setShowPop] = useState(false)
     
     const pageSize = 7;
@@ -18,7 +20,8 @@ const Stations = ()=>{
             try {
                 const response = await fetch('http://127.0.0.1:8000/api/get-all-stations',{
                     headers : {
-                        Authorization: `Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vMTI3LjAuMC4xOjgwMDAvYXBpL2xvZ2luIiwiaWF0IjoxNzEyMTgxMTQ1LCJleHAiOjE3MTIxODQ3NDUsIm5iZiI6MTcxMjE4MTE0NSwianRpIjoiaWlGd0JhUmVBZktuYmQ3ZyIsInN1YiI6IjE4IiwicHJ2IjoiMjNiZDVjODk0OWY2MDBhZGIzOWU3MDFjNDAwODcyZGI3YTU5NzZmNyJ9.2tP7EHcu6Aq_4_tEgOyBhbdVadH0gkwX0fg8eMKwpKo`
+                        Authorization: `Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vMTI3LjAuMC4xOjgwMDAvYXBpL2xvZ2luIiwiaWF0IjoxNzEyMTg2NjkyLCJleHAiOjE3MTIxOTAyOTIsIm5iZiI6MTcxMjE4NjY5MiwianRpIjoieExWUlowZ3Q5TVdmNFVVZSIsInN1YiI6IjE4IiwicHJ2IjoiMjNiZDVjODk0OWY2MDBhZGIzOWU3MDFjNDAwODcyZGI3YTU5NzZmNyJ9.2MGC3lsA2T02ZkwYmxm2VaAUl4tug_kQm8oZ3t-fhqM`
+
                     }
                 });
                 const data = await response.json();
