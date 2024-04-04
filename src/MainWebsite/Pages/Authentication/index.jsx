@@ -1,30 +1,92 @@
-import React from "react";
+import React, { useState } from "react";
 import * as Components from "./style";
-
+import { sendRequest } from "../../../core/tools/request";
+import { requestMethods } from "../../../core/enums/requestMethods";
 const Authentication = () => {
   const [signIn, toggle] = React.useState(true);
+  const [Credential, setCredential] = useState({});
   return (
     <Components.Wrapper>
       <Components.Container>
         <Components.SignUpContainer signinIn={signIn}>
           <Components.Form>
             <Components.Title>Create Account</Components.Title>
-            <Components.Input type="text" placeholder="Name" />
-            <Components.Input type="email" placeholder="Email" />
-            <Components.Input type="password" placeholder="Password" />
-            <Components.Button textColor="black">Sign Up</Components.Button>
+            <Components.Input
+              type="text"
+              placeholder="Name"
+              onChange={(e) => {
+                setCredential({ ...Credential, name: e.target.value });
+              }}
+            />
+            <Components.Input
+              type="email"
+              placeholder="Email"
+              onChange={(e) => {
+                setCredential({ ...Credential, email: e.target.value });
+              }}
+            />
+            <Components.Input
+              type="password"
+              placeholder="Password"
+              onChange={(e) => {
+                setCredential({ ...Credential, password: e.target.value });
+              }}
+            />
+            <Components.Button
+              onClick={async (e) => {
+                e.preventDefault();
+                const formatedData = {
+                  ...Credential,
+                };
+                const res = await sendRequest(
+                  requestMethods.POST,
+                  "/register",
+                  formatedData
+                );
+                if (res.data.status === "success") {
+                }
+              }}
+            >
+              Sign Up
+            </Components.Button>
           </Components.Form>
         </Components.SignUpContainer>
 
         <Components.SignInContainer signinIn={signIn}>
           <Components.Form>
             <Components.Title>Sign in</Components.Title>
-            <Components.Input type="email" placeholder="Email" />
-            <Components.Input type="password" placeholder="Password" />
+            <Components.Input
+              type="email"
+              placeholder="Email"
+              onChange={(e) =>
+                setCredential({ ...Credential, email: e.target.value })
+              }
+            />
+            <Components.Input
+              type="password"
+              placeholder="Password"
+              onChange={(e) =>
+                setCredential({ ...Credential, password: e.target.value })
+              }
+            />
             <Components.Anchor href="#">
               Forgot your password?
             </Components.Anchor>
-            <Components.Button>Sigin In</Components.Button>
+            <Components.Button
+              onClick={async (e) => {
+                e.preventDefault();
+                const resp = await sendRequest(
+                  requestMethods.POST,
+                  "/login",
+                  Credential
+                );
+                if (resp.data.status === "success") {
+                  console.log("logged in");
+                }
+              }}  
+            >
+              Sigin In
+            </Components.Button>
           </Components.Form>
         </Components.SignInContainer>
 
