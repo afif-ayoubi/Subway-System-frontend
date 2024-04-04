@@ -1,0 +1,14 @@
+.schedule-data {
+    height: 91vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: top;
+    align-items: center;
+    padding-top: 60px;
+    background-image: url('../../../assets/schedule.jpg');
+    background-size: cover;
+}
+
+.rides {
+    width: 50vw;
+}

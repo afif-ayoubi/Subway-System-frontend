@@ -6,14 +6,15 @@ const index = ({
   col_2 = "Address",
   col_3 = "Operating Hours",
   col_4 = "Service Status",
+  height = "normal"
 }) => {
   return (
     <>
-      <div class="table-card">
-        <div class="el">{col_1}</div>
-        <div class="el">{col_2}</div>
-        <div class="el">{col_3}</div>
-        <div class="el">{col_4}</div>
+      <div className={`table-card ${height}`}>
+        <div className="el">{col_1}</div>
+        <div className="el">{col_2}</div>
+        <div className="el">{col_3}</div>
+        <div className="el">{col_4}</div>
         <div className="view-btn">
           <MainButton text={"view"} width={"small-width"} />
         </div>

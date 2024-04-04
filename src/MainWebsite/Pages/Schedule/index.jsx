@@ -1,9 +1,15 @@
 import React from "react";
+import Header from '../../Components/Header'
+import Footer from '../../Components/Footer'
+import SectionSchedule from '../../Components/SectionSchedule'
+
 
 const Schedule = () => {
   return (
     <div>
-      <h1>Schedule</h1>
+      <Header />
+      <SectionSchedule />
+      <Footer />
     </div>
   );
 };
