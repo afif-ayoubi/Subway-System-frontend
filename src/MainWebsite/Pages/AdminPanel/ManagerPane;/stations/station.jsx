@@ -20,7 +20,7 @@ const Stations = ()=>{
             try {
                 const response = await fetch('http://127.0.0.1:8000/api/get-all-stations',{
                     headers : {
-                        Authorization: `Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vMTI3LjAuMC4xOjgwMDAvYXBpL2xvZ2luIiwiaWF0IjoxNzEyMTg2NjkyLCJleHAiOjE3MTIxOTAyOTIsIm5iZiI6MTcxMjE4NjY5MiwianRpIjoieExWUlowZ3Q5TVdmNFVVZSIsInN1YiI6IjE4IiwicHJ2IjoiMjNiZDVjODk0OWY2MDBhZGIzOWU3MDFjNDAwODcyZGI3YTU5NzZmNyJ9.2MGC3lsA2T02ZkwYmxm2VaAUl4tug_kQm8oZ3t-fhqM`
+                        Authorization: `Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vMTI3LjAuMC4xOjgwMDAvYXBpL2xvZ2luIiwiaWF0IjoxNzEyMjU4ODc5LCJleHAiOjE3MTIyNjI0NzksIm5iZiI6MTcxMjI1ODg3OSwianRpIjoiMWk2MFMwdEhUbkhiWlBTSiIsInN1YiI6IjE4IiwicHJ2IjoiMjNiZDVjODk0OWY2MDBhZGIzOWU3MDFjNDAwODcyZGI3YTU5NzZmNyJ9.7JuHUOxhdeNPc6zGVC2jbELMtBZEDV11ij6onsua-ks`
 
                     }
                 });
