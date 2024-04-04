@@ -1,4 +1,13 @@
+.map {
+    height: 80.5vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+}
+
 .leaflet-container {
-    height: 70vh;
-    width: 70vw;
+    height: 65vh;
+    width: 65vw;
+    border-radius: 20px;
 }
