@@ -58,12 +58,29 @@ const RideModal = ({onclose})=>{
 return (
     <div className="manager-cards flex center">
         <div className="managercard flex column">
-        <h2 className="flex center">Create New Ride</h2>
-            <form className="flex column center">
-              <input type="text" name="Departure Time" placeholder="Departure Time"  />
-              <input type="text" name="Arrival Time" placeholder="Arrival Time"  />
-              <input type="text" name="Departure Location" placeholder="Departure Location"  />
-              <input type="text" name="Arrival Location" placeholder="Arrival Location" />
+        <h2 className="flex center ">Create New Ride</h2>
+            <form className="flex column center" onSubmit={addRide}>
+              <input type="text" name="Departure Time" placeholder="Departure Time" onChange={(e) => setDepTime(e.target.value)} />
+              <input type="text" name="Arrival Time" placeholder="Arrival Time" onChange={(e) => setArrTime(e.target.value)} />
+              <select value={depLocation} onChange={(e) => setDepLocation(e.target.value)}>
+                  <option value="">Select Departure Location</option>
+                  {stations.map(station => (
+                      <option key={station.id} value={`${station.id}|${station.name}`}>
+                          {station.name}
+                      </option>
+                  ))}
+              </select>
+              <select value={arrLocation} onChange={(e) => setArrLocation(e.target.value)}>
+                  <option value="">Select Arrival Location</option>
+                  {stations.map(station => (
+                      <option key={station.id} value={`${station.id}|${station.name}`}>
+                          {station.name}
+                      </option>
+                  ))}
+              </select>
+
+              <input type="text" name="status" placeholder="status" onChange={(e) => setStatus(e.target.value)} />
+
               <div className="btns flex center">
                  <button type="submit" className="add">Create</button>
                <button onClick={onclose} className="del">Close</button>
