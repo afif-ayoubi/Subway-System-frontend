@@ -4,11 +4,13 @@ import Modal from "../../component/Modal/modal";
 import ChatPopup from "../chats/Chat";
 import './rides.css'
 import RideModal from "../../component/Modal/RideMoald";
+import EditRidePopup from "../../component/Modal/RideModal";
 
 const Rides = ()=>{
     const [rides, setRides] = useState([]);
     const [currentPage, setCurrentPage] = useState(1);
     const [show,setShow] = useState(false)
+    const [showpop,setShowPop] = useState(false)
     const pageSize = 7;
  
 
@@ -35,7 +37,7 @@ const Rides = ()=>{
             const deleteData = async (id) =>{
                 const data = new FormData();
                 data.append('id', id);
-                       
+
             try {
                 const response = await fetch(`http://127.0.0.1:8000/api/delete-ride/${id}`,{
                     method: 'DELETE',
@@ -61,10 +63,10 @@ const Rides = ()=>{
     const PageChange = (page) => {
         setCurrentPage(page);
     };
-    const Delete = (id) => {
-        setRides(prevRides => prevRides.filter(rides => rides.id !== id));
-    };
 
+    const togglePopup = () => {
+        setShowPop(!showpop);
+    };
     const startIndex = (currentPage - 1) * pageSize;
     const endIndex = startIndex + pageSize;
     const displayRides = rides.slice(startIndex, endIndex);
@@ -80,7 +82,7 @@ const Rides = ()=>{
     </div>
    { show && <RideModal onclose = {() => setShow(false)}/>}
 
-   {!show && (
+   {!show &&  !showpop &&(
                 <>
     <div className="Ride-container">
         <table>
@@ -100,12 +102,12 @@ const Rides = ()=>{
                     <tr key={rides.id}>
                         <td>{rides.departure_time}</td>
                         <td>{rides.arrival_time}</td>
-                        <td>{rides.departure_station_id}</td>
-                        <td>{rides.arrival_station_id}</td>
+                        <td>{rides.departure_station.name}</td>
+                        <td>{rides.arrival_station.name}</td>
                         <td>{rides.status}</td>
                         <td className="actions">
                             <button onClick={() => deleteData(rides.id)}>Remove</button>
-                            <button onClick={() => Delete(rides.id)}>Edite</button>
+                            <button onClick={togglePopup}>Edit</button>
                             
                         </td>
                     </tr>
@@ -122,7 +124,7 @@ const Rides = ()=>{
         <ChatPopup />
     </>
             )}
-           
+           {showpop && <EditRidePopup onClose={togglePopup} />}
 </div>
 
     )
