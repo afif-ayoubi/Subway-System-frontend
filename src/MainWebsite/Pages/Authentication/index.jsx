@@ -11,7 +11,7 @@ const Authentication = () => {
         <Components.SignUpContainer signinIn={signIn}>
           <Components.Form>
             <Components.Title>Create Account</Components.Title>
-            <Components.Input
+            <Components.Input 
               type="text"
               placeholder="Name"
               onChange={(e) => {

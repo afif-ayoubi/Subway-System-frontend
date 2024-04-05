@@ -4,7 +4,7 @@ import "./index.css";
 const index = ({nav1="Home", nav2="Profile", nav3="Map"}) => {
   return (
     <>
-      <header class="user-header">
+      <header class="user-header ">
         <div class="logo">
           <h2>
             YourWay
