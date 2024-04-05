@@ -17,10 +17,10 @@ const AdminPanel = ()=>{
     return (
         <div className="container flex ">
             <SideBar />
-            {/* <Coins /> */}
+            <Coins />
             {/*<Dashboard />*/}
             {/* <Manager /> */}
-            <Branches />
+            {/* <Branches /> */}
         </div>
     )
 }
