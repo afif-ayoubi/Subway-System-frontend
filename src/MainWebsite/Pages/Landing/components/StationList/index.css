@@ -1,5 +1,5 @@
 .stations-list {
-    height: 70vh;
+    min-height: 60vh;
 }
 
 .cards-table {
@@ -20,7 +20,7 @@
     text-align: center;
   }
   
-  .table {
+  .stat-table {
     width: 100%;
     flex-direction: column;
     justify-content: center;
