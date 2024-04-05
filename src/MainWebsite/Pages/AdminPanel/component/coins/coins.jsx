@@ -9,12 +9,12 @@ const Coins = ()=>{
  
 
 
-    useEffect(() => {
+
         const fetchData = async () => {
             try {
                 const response = await fetch('http://127.0.0.1:8000/api/get-all-coin-requests',{
                     headers : {
-                        Authorization: `Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vMTI3LjAuMC4xOjgwMDAvYXBpL2xvZ2luIiwiaWF0IjoxNzEyMTg2NjkyLCJleHAiOjE3MTIxOTAyOTIsIm5iZiI6MTcxMjE4NjY5MiwianRpIjoieExWUlowZ3Q5TVdmNFVVZSIsInN1YiI6IjE4IiwicHJ2IjoiMjNiZDVjODk0OWY2MDBhZGIzOWU3MDFjNDAwODcyZGI3YTU5NzZmNyJ9.2MGC3lsA2T02ZkwYmxm2VaAUl4tug_kQm8oZ3t-fhqM`
+                        Authorization: `Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vMTI3LjAuMC4xOjgwMDAvYXBpL2xvZ2luIiwiaWF0IjoxNzEyMjYyNjE1LCJleHAiOjE3MTI4Njc0MTUsIm5iZiI6MTcxMjI2MjYxNSwianRpIjoiTFAzSGxlcWRHRkwwUlplViIsInN1YiI6IjE4IiwicHJ2IjoiMjNiZDVjODk0OWY2MDBhZGIzOWU3MDFjNDAwODcyZGI3YTU5NzZmNyJ9.19yz9cZNYDcAKgkxGJauNrT_zh39TIOMEHeC-BDIiX0`
 
                     }
                 });
@@ -27,8 +27,33 @@ const Coins = ()=>{
         };
 
         fetchData();
-    }, []);
+
     
+    const updateStatus = async (requestId, status) => {
+        try {
+          await fetch(`http://127.0.0.1:8000/api/update-coin-request/${requestId}`, {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+              Authorization:
+                "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vMTI3LjAuMC4xOjgwMDAvYXBpL2xvZ2luIiwiaWF0IjoxNzEyMjYyNjE1LCJleHAiOjE3MTI4Njc0MTUsIm5iZiI6MTcxMjI2MjYxNSwianRpIjoiTFAzSGxlcWRHRkwwUlplViIsInN1YiI6IjE4IiwicHJ2IjoiMjNiZDVjODk0OWY2MDBhZGIzOWU3MDFjNDAwODcyZGI3YTU5NzZmNyJ9.19yz9cZNYDcAKgkxGJauNrT_zh39TIOMEHeC-BDIiX0",
+            },
+            body: JSON.stringify({ status }),
+          });
+
+          fetchData();
+        } catch (error) {
+          console.error("Error updating request status:", error);
+        }
+      };
+    
+      const handleAccept = (requestId) => {
+        updateStatus(requestId, "Approved");
+      };
+    
+      const handleReject = (requestId) => {
+        updateStatus(requestId, "Rejected");
+      };
 
     const totalPages = Math.ceil(coinRequests.length / pageSize);
 
@@ -72,8 +97,8 @@ const Coins = ()=>{
                         <td>{request.amount}</td>
                         <td>{request.status}</td>
                         <td className="actions">
-                            <button className="accept">Accept</button>
-                            <button >Reject</button>
+                            <button onClick={() => handleAccept(request.id)}className="accept">Accept</button>
+                            <button onClick={() => handleReject(request.id)}>Reject</button>
                         </td>
                     </tr>
                 ))}
