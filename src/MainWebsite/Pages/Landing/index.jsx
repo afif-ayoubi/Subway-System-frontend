@@ -24,10 +24,18 @@ const Landing = () => {
     fetchStations();
   }, []);
 
+import { useNavigate } from 'react-router-dom'
+
+const Landing = () => {
+  const navigate = useNavigate();
+
+  const handleLoginClick = (route) => {
+    navigate(route);
+  };
 
   return (
     <div>
-      <Header />
+      <Header nav1="Home" nav2="Profile" nav3="Login" clickHandler3={() => handleLoginClick("/Authentication")} />
       <Hero />
       <StationList stations={stations} />
       <Review />
@@ -35,4 +43,5 @@ const Landing = () => {
     </div>
   );
 };
+
 export default Landing;

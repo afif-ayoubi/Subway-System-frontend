@@ -10,6 +10,8 @@
 }
 .profile-image > img {
   margin: 20px;
+  height: 180px;
+  width: 180px;
   border-radius: 50%;
   object-fit: cover;
 }
@@ -17,5 +19,5 @@
   margin: 30px 0px;
 }
 .save-button {
-  flex-grow: 1;
+  padding-top: 35px;
 }
