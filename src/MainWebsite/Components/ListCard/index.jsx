@@ -1,8 +1,9 @@
 import React from "react";
-import {useNavigate} from 'react-router-dom'
+import { useNavigate } from 'react-router-dom';
 import MainButton from "../MainButton";
 import "./index.css";
-const index = ({
+
+const Index = ({
   col_1 = "Station Name",
   col_2 = "Address",
   col_3 = "Operating Hours",
@@ -10,16 +11,18 @@ const index = ({
   height = "normal",
   stationId
 }) => {
-  const navigate = useNavigate()
+
+  const navigate = useNavigate(); // Declare the hook at the top level
 
   const handleViewClick = () => {
-    navigate(`/schedule/${stationId}`)
+    navigate(`/schedule/${stationId}`);
   }
+
   return (
     <>
       <div className={`table-card ${height}`}>
         <div className="el">{col_1}</div>
-        <div className="el">{col_2}</div>w
+        <div className="el">{col_2}</div>
         <div className="el">{col_3}</div>
         <div className="el">{col_4}</div>
         <div className="view-btn">
@@ -29,4 +32,5 @@ const index = ({
     </>
   );
 };
-export default index;
+
+export default Index;

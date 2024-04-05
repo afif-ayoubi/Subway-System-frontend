@@ -7,6 +7,7 @@ import Footer from '../../Components/Footer'
 import './style.css'
 import { sendRequest } from "../../../core/tools/request";
 import { requestMethods } from "../../../core/enums/requestMethods";
+import { useNavigate } from 'react-router-dom'
 
 const Landing = () => {
   const [stations, setStations] = useState([]);
@@ -24,7 +25,6 @@ const Landing = () => {
     fetchStations();
   }, []);
 
-import { useNavigate } from 'react-router-dom'
 
 const Landing = () => {
   const navigate = useNavigate();
@@ -43,5 +43,5 @@ const Landing = () => {
     </div>
   );
 };
-
+};
 export default Landing;
