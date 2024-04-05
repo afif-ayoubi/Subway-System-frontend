@@ -55,14 +55,14 @@ const  Modal = ({onclose})=> {
               <input type="text" name="name" value={name} placeholder="Name"  onChange={(e)=>{setName(e.target.value)}}/>
 
               <input type="text" name="address" value={address} placeholder="Address" onChange={(e)=>{setAdress(e.target.value)}} />
-              <input name=" Select Manager" value={manager} onChange={(e) => setManager(e.target.value)} className="select" />
+              <input name=" Select Manager" value={manager} onChange={(e) => setManager(e.target.value)} className="select"  placeholder="Manager"/>
               <input type="text" name="latitude" value={latitude} placeholder="Latitude" onChange={(e) => { setLatitude(e.target.value) }} /> 
               <input type="text" name="longitude" value={longitude} placeholder="Longitude" onChange={(e) => { setLongitude(e.target.value) }} />
-              <input type="text" name="	Facilities" value={facilities} placeholder="	Facilities" onChange={(e)=>{setFacilities(e.target.value)}} />
+              <input type="text" name="	Facilities" value={facilities} placeholder="Facilities" onChange={(e)=>{setFacilities(e.target.value)}} />
               <input type="text" name="operation" value={operation} placeholder="Operation Hours"  onChange={(e)=>{setOperation(e.target.value)}}/>
               <input type="text" name="status"  value={status} placeholder="Status" onChange={(e)=>{setStatus(e.target.value)}} />
               <div className="btns flex center">
-                 <button type="submit"  className="add">Create ++</button>
+                 <button type="submit"  className="add">Create </button>
                <button onClick={onclose} className="del">Close</button>
               </div>
               
