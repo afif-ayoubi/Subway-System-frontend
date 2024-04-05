@@ -12,9 +12,9 @@ const ManagerPanel = ()=>{
     return (
         <div className="flex">
             <ManagerSideBar />
-            <Rides />
+            {/* <Rides /> */}
             {/* <Review /> */}
-            {/* <Stations /> */}
+            <Stations />
             
         </div>
     )
