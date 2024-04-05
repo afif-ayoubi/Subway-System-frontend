@@ -1,5 +1,5 @@
 import React from "react";
-import ListCard from '../../../../Components/ListCard';
+import ListCard from '../../../../Components/ListCard/Index';
 import './index.css';
 
 const Index = ({ stations }) => {
