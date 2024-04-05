@@ -3,29 +3,59 @@ import { useState,useEffect } from "react";
 import "./coins.css"
 
 const Coins = ()=>{
-    const [rows, setRows] = useState([]);
+    const [coinRequests, setCoinRequests] = useState([]);
     const [currentPage, setCurrentPage] = useState(1);
-    const [show,setShow] = useState(false)
     const pageSize = 7;
  
 
 
-    useEffect(() => {
+
         const fetchData = async () => {
             try {
-                const response = await fetch('https://jsonplaceholder.typicode.com/todos/');
+                const response = await fetch('http://127.0.0.1:8000/api/get-all-coin-requests',{
+                    headers : {
+                        Authorization: `Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vMTI3LjAuMC4xOjgwMDAvYXBpL2xvZ2luIiwiaWF0IjoxNzEyMjYyNjE1LCJleHAiOjE3MTI4Njc0MTUsIm5iZiI6MTcxMjI2MjYxNSwianRpIjoiTFAzSGxlcWRHRkwwUlplViIsInN1YiI6IjE4IiwicHJ2IjoiMjNiZDVjODk0OWY2MDBhZGIzOWU3MDFjNDAwODcyZGI3YTU5NzZmNyJ9.19yz9cZNYDcAKgkxGJauNrT_zh39TIOMEHeC-BDIiX0`
+
+                    }
+                });
                 const data = await response.json();
-                setRows(data);
+                setCoinRequests(data.coin_requests);
+                
             } catch (error) {
                 console.error('Error fetching data:', error);
             }
         };
 
         fetchData();
-    }, []);
-    
 
-    const totalPages = Math.ceil(rows.length / pageSize);
+    
+    const updateStatus = async (requestId, status) => {
+        try {
+          await fetch(`http://127.0.0.1:8000/api/update-coin-request/${requestId}`, {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+              Authorization:
+                "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vMTI3LjAuMC4xOjgwMDAvYXBpL2xvZ2luIiwiaWF0IjoxNzEyMjYyNjE1LCJleHAiOjE3MTI4Njc0MTUsIm5iZiI6MTcxMjI2MjYxNSwianRpIjoiTFAzSGxlcWRHRkwwUlplViIsInN1YiI6IjE4IiwicHJ2IjoiMjNiZDVjODk0OWY2MDBhZGIzOWU3MDFjNDAwODcyZGI3YTU5NzZmNyJ9.19yz9cZNYDcAKgkxGJauNrT_zh39TIOMEHeC-BDIiX0",
+            },
+            body: JSON.stringify({ status }),
+          });
+
+          fetchData();
+        } catch (error) {
+          console.error("Error updating request status:", error);
+        }
+      };
+    
+      const handleAccept = (requestId) => {
+        updateStatus(requestId, "Approved");
+      };
+    
+      const handleReject = (requestId) => {
+        updateStatus(requestId, "Rejected");
+      };
+
+    const totalPages = Math.ceil(coinRequests.length / pageSize);
 
     const PageChange = (page) => {
         setCurrentPage(page);
@@ -34,7 +64,7 @@ const Coins = ()=>{
 
     const startIndex = (currentPage - 1) * pageSize;
     const endIndex = startIndex + pageSize;
-    const displayRows = rows.slice(startIndex, endIndex);
+    const displayCoinRequests = coinRequests.slice(startIndex, endIndex);
 
 
     return (
@@ -60,17 +90,15 @@ const Coins = ()=>{
                 </tr>
             </thead>
             <tbody>
-                {displayRows.map(row => (
-                    <tr key={row.id}>
-                        {/* <td>{row.id}</td> */}
-                        <td>{row.name}</td>
-                        <td>{row.address}</td>
-                        <td>{row.managerEmail}</td>
-                        <td>{row.status}</td>
-                        <td>{row.capacity}</td>
+                {displayCoinRequests.map(request => (
+                    <tr key={request.id}>
+                        <td>{request.user.name}</td>
+                        <td>{request.user.email}</td>
+                        <td>{request.amount}</td>
+                        <td>{request.status}</td>
                         <td className="actions">
-                            <button className="accept">Accept</button>
-                            <button >Reject</button>
+                            <button onClick={() => handleAccept(request.id)}className="accept">Accept</button>
+                            <button onClick={() => handleReject(request.id)}>Reject</button>
                         </td>
                     </tr>
                 ))}

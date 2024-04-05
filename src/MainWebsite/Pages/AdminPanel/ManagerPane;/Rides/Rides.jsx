@@ -4,11 +4,14 @@ import Modal from "../../component/Modal/modal";
 import ChatPopup from "../chats/Chat";
 import './rides.css'
 import RideModal from "../../component/Modal/RideMoald";
+import EditRidePopup from "../../component/Modal/EditRideModal";
 
 const Rides = ()=>{
     const [rides, setRides] = useState([]);
     const [currentPage, setCurrentPage] = useState(1);
     const [show,setShow] = useState(false)
+    const [showpop,setShowPop] = useState(false)
+    const [editingRides, setEditingRides] = useState(null);
     const pageSize = 7;
  
 
@@ -18,7 +21,7 @@ const Rides = ()=>{
             try {
                 const response = await fetch('http://127.0.0.1:8000/api/get-all-rides',{
                     headers : {
-                        Authorization: `Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vMTI3LjAuMC4xOjgwMDAvYXBpL2xvZ2luIiwiaWF0IjoxNzEyMTg5NTgwLCJleHAiOjE3MTIxOTMxODAsIm5iZiI6MTcxMjE4OTU4MCwianRpIjoiRjhqRU8zY0xYZXhqTndPRCIsInN1YiI6IjE4IiwicHJ2IjoiMjNiZDVjODk0OWY2MDBhZGIzOWU3MDFjNDAwODcyZGI3YTU5NzZmNyJ9.PV_x3YuD-0mCPfSvx4xtysLfVeeGn-c3KCAonRPnHOg`
+                        Authorization: `Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vMTI3LjAuMC4xOjgwMDAvYXBpL2xvZ2luIiwiaWF0IjoxNzEyMjYyNjE1LCJleHAiOjE3MTI4Njc0MTUsIm5iZiI6MTcxMjI2MjYxNSwianRpIjoiTFAzSGxlcWRHRkwwUlplViIsInN1YiI6IjE4IiwicHJ2IjoiMjNiZDVjODk0OWY2MDBhZGIzOWU3MDFjNDAwODcyZGI3YTU5NzZmNyJ9.19yz9cZNYDcAKgkxGJauNrT_zh39TIOMEHeC-BDIiX0`
                     }
                 });
                 const data = await response.json();
@@ -30,8 +33,30 @@ const Rides = ()=>{
         };
 
         fetchData();
+
     }, []);
-    
+            const deleteData = async (id) =>{
+                const data = new FormData();
+                data.append('id', id);
+
+            try {
+                const response = await fetch(`http://127.0.0.1:8000/api/delete-ride/${id}`,{
+                    method: 'DELETE',
+                    headers : {
+                        Authorization: `Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vMTI3LjAuMC4xOjgwMDAvYXBpL2xvZ2luIiwiaWF0IjoxNzEyMjYyNjE1LCJleHAiOjE3MTI4Njc0MTUsIm5iZiI6MTcxMjI2MjYxNSwianRpIjoiTFAzSGxlcWRHRkwwUlplViIsInN1YiI6IjE4IiwicHJ2IjoiMjNiZDVjODk0OWY2MDBhZGIzOWU3MDFjNDAwODcyZGI3YTU5NzZmNyJ9.19yz9cZNYDcAKgkxGJauNrT_zh39TIOMEHeC-BDIiX0`
+                    },
+                    body: data
+                })
+                console.log(data)
+                if (response.ok) {
+                    setRides(prevRides => prevRides.filter(ride => ride.id !== id));
+                } else {
+                    console.error('Failed to delete ride:', response.statusText);
+                }
+            } catch (error) {
+                console.error('Error deleting ride:', error);
+            }
+        }
 
 
     const totalPages = Math.ceil(rides.length / pageSize);
@@ -39,10 +64,11 @@ const Rides = ()=>{
     const PageChange = (page) => {
         setCurrentPage(page);
     };
-    const Delete = (id) => {
-        setRides(prevRides => prevRides.filter(rides => rides.id !== id));
-    };
 
+    const togglePopup = (ride) => {
+        setEditingRides(ride)
+        setShowPop(!showpop);
+    };
     const startIndex = (currentPage - 1) * pageSize;
     const endIndex = startIndex + pageSize;
     const displayRides = rides.slice(startIndex, endIndex);
@@ -58,7 +84,7 @@ const Rides = ()=>{
     </div>
    { show && <RideModal onclose = {() => setShow(false)}/>}
 
-   {!show && (
+   {!show &&  !showpop &&(
                 <>
     <div className="Ride-container">
         <table>
@@ -78,12 +104,12 @@ const Rides = ()=>{
                     <tr key={rides.id}>
                         <td>{rides.departure_time}</td>
                         <td>{rides.arrival_time}</td>
-                        <td>{rides.departure_station_id}</td>
-                        <td>{rides.arrival_station_id}</td>
+                        <td>{rides.departure_station.name}</td>
+                        <td>{rides.arrival_station.name}</td>
                         <td>{rides.status}</td>
                         <td className="actions">
-                            <button onClick={() => Delete(rides.id)}>Remove</button>
-                            <button onClick={() => Delete(rides.id)}>Edite</button>
+                            <button onClick={() => deleteData(rides.id)}>Remove</button>
+                            <button className="edit" onClick={() => togglePopup(rides)}>Edit</button>
                             
                         </td>
                     </tr>
@@ -100,7 +126,7 @@ const Rides = ()=>{
         <ChatPopup />
     </>
             )}
-           
+           {showpop && <EditRidePopup onClose={togglePopup} ride={editingRides}/>}
 </div>
 
     )
