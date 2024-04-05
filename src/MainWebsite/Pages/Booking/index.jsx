@@ -81,12 +81,14 @@ const Booking = () => {
             width={"big-width"}
             backgroundColor={"bg-yellow"}
           />
-          <div className="padding-10">    <MainButton
-            text={"Back"}
-            width={"big-width"}
-            backgroundColor={"white"}
-          /></div>
-              
+          <div className="padding-10">
+            {" "}
+            <MainButton
+              text={"Back"}
+              width={"big-width"}
+              backgroundColor={"white"}
+            />
+          </div>
         </div>
       </div>
     </div>

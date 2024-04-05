@@ -1,8 +1,12 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import * as Components from "./style";
 import { sendRequest } from "../../../core/tools/request";
 import { requestMethods } from "../../../core/enums/requestMethods";
+
 const Authentication = () => {
+  const navigate = useNavigate();
+
   const [signIn, toggle] = React.useState(true);
   const [Credential, setCredential] = useState({});
   return (
@@ -44,6 +48,9 @@ const Authentication = () => {
                   formatedData
                 );
                 if (res.data.status === "success") {
+                  localStorage.setItem("token", res.data.token);
+
+                  // navigate("/");
                 }
               }}
             >
@@ -81,7 +88,7 @@ const Authentication = () => {
                   Credential
                 );
                 if (resp.data.status === "success") {
-                  console.log("logged in");
+                  localStorage.setItem("token", resp.data.token);
                 }
               }}  
             >
