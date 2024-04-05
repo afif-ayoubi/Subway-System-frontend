@@ -27,11 +27,13 @@ const RideModal = ({onclose})=>{
         console.log(error)
       }
     }
+
     getlocation()  
 
   },[])
   const addRide = async (event)=>{
     event.preventDefault();
+    console.log(depLocation,arrLocation,depTime,arrTime,status)
     const formData = new FormData();
     formData.append('departure_station_id', depLocation);
     formData.append('arrival_station_id', arrLocation);
@@ -49,7 +51,7 @@ const RideModal = ({onclose})=>{
     })
     const data  = await response.json()
     console.log(data)
-    onclose();
+
   } catch (error) {
     console.log(error)
   }
@@ -65,7 +67,7 @@ return (
               <select value={depLocation} onChange={(e) => setDepLocation(e.target.value)}>
                   <option value="">Select Departure Location</option>
                   {stations.map(station => (
-                      <option key={station.id} value={`${station.id}|${station.name}`}>
+                      <option key={station.id} value={`${station.id}`}>
                           {station.name}
                       </option>
                   ))}
@@ -73,7 +75,7 @@ return (
               <select value={arrLocation} onChange={(e) => setArrLocation(e.target.value)}>
                   <option value="">Select Arrival Location</option>
                   {stations.map(station => (
-                      <option key={station.id} value={`${station.id}|${station.name}`}>
+                      <option key={station.id} value={`${station.id}`}>
                           {station.name}
                       </option>
                   ))}
