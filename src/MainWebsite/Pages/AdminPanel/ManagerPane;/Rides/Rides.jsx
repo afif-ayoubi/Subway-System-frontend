@@ -4,13 +4,14 @@ import Modal from "../../component/Modal/modal";
 import ChatPopup from "../chats/Chat";
 import './rides.css'
 import RideModal from "../../component/Modal/RideMoald";
-import EditRidePopup from "../../component/Modal/RideModal";
+import EditRidePopup from "../../component/Modal/EditRideModal";
 
 const Rides = ()=>{
     const [rides, setRides] = useState([]);
     const [currentPage, setCurrentPage] = useState(1);
     const [show,setShow] = useState(false)
     const [showpop,setShowPop] = useState(false)
+    const [editingRides, setEditingRides] = useState(null);
     const pageSize = 7;
  
 
@@ -64,7 +65,8 @@ const Rides = ()=>{
         setCurrentPage(page);
     };
 
-    const togglePopup = () => {
+    const togglePopup = (ride) => {
+        setEditingRides(ride)
         setShowPop(!showpop);
     };
     const startIndex = (currentPage - 1) * pageSize;
@@ -107,7 +109,7 @@ const Rides = ()=>{
                         <td>{rides.status}</td>
                         <td className="actions">
                             <button onClick={() => deleteData(rides.id)}>Remove</button>
-                            <button onClick={togglePopup}>Edit</button>
+                            <button className="edit" onClick={() => togglePopup(rides)}>Edit</button>
                             
                         </td>
                     </tr>
@@ -124,7 +126,7 @@ const Rides = ()=>{
         <ChatPopup />
     </>
             )}
-           {showpop && <EditRidePopup onClose={togglePopup} />}
+           {showpop && <EditRidePopup onClose={togglePopup} ride={editingRides}/>}
 </div>
 
     )
