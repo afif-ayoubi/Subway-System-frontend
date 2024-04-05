@@ -17,7 +17,7 @@ const Branches = ()=>{
             try {
                 const response = await fetch('http://127.0.0.1:8000/api/get-all-stations',{
                     headers : {
-                        Authorization: `Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vMTI3LjAuMC4xOjgwMDAvYXBpL2xvZ2luIiwiaWF0IjoxNzEyMTg2NjkyLCJleHAiOjE3MTIxOTAyOTIsIm5iZiI6MTcxMjE4NjY5MiwianRpIjoieExWUlowZ3Q5TVdmNFVVZSIsInN1YiI6IjE4IiwicHJ2IjoiMjNiZDVjODk0OWY2MDBhZGIzOWU3MDFjNDAwODcyZGI3YTU5NzZmNyJ9.2MGC3lsA2T02ZkwYmxm2VaAUl4tug_kQm8oZ3t-fhqM`
+                        Authorization: `Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vMTI3LjAuMC4xOjgwMDAvYXBpL2xvZ2luIiwiaWF0IjoxNzEyMjYyNjE1LCJleHAiOjE3MTI4Njc0MTUsIm5iZiI6MTcxMjI2MjYxNSwianRpIjoiTFAzSGxlcWRHRkwwUlplViIsInN1YiI6IjE4IiwicHJ2IjoiMjNiZDVjODk0OWY2MDBhZGIzOWU3MDFjNDAwODcyZGI3YTU5NzZmNyJ9.19yz9cZNYDcAKgkxGJauNrT_zh39TIOMEHeC-BDIiX0`
                     }
                 });
                 const data = await response.json();
@@ -29,15 +29,34 @@ const Branches = ()=>{
 
         fetchData();
     }, []);
+    const deleteData = async (id) =>{
+        const data = new FormData();
+        data.append('id', id);
+
+    try {
+        const response = await fetch(`http://127.0.0.1:8000/api/stations/${id}`,{
+            method: 'DELETE',
+            headers : {
+                Authorization: `Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vMTI3LjAuMC4xOjgwMDAvYXBpL2xvZ2luIiwiaWF0IjoxNzEyMjYyNjE1LCJleHAiOjE3MTI4Njc0MTUsIm5iZiI6MTcxMjI2MjYxNSwianRpIjoiTFAzSGxlcWRHRkwwUlplViIsInN1YiI6IjE4IiwicHJ2IjoiMjNiZDVjODk0OWY2MDBhZGIzOWU3MDFjNDAwODcyZGI3YTU5NzZmNyJ9.19yz9cZNYDcAKgkxGJauNrT_zh39TIOMEHeC-BDIiX0`
+            },
+            body: data
+        })
+        console.log(data)
+        if (response.ok) {
+            setStations(prevStations => prevStations.filter(stations => stations.id !== id));
+        } else {
+            console.error('Failed to delete ride:', response.statusText);
+        }
+    } catch (error) {
+        console.error('Error deleting ride:', error);
+    }
+}
     
 
     const totalPages = Math.ceil(stations.length / pageSize);
 
     const PageChange = (page) => {
         setCurrentPage(page);
-    };
-    const Delete = (id) => {
-        setStations(prevStations => prevStations.filter(stations => stations.id !== id));
     };
 
     const startIndex = (currentPage - 1) * pageSize;
@@ -80,7 +99,7 @@ const Branches = ()=>{
                         <td>{stations.service_status}</td>
                         <td className="actions"> 
                             <button >ShutDown</button>
-                            <button onClick={() => Delete(stations.id)}>Remove</button>
+                            <button onClick={() => deleteData(stations.id)}>Remove</button>
                         </td>
                     </tr>
                 ))}
