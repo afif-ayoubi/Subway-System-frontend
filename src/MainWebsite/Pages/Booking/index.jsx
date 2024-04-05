@@ -77,7 +77,7 @@ const Booking = () => {
             </div>
           </div>
         </div>
-        <div className=" padding-100 save-button flex column center">
+        <div className=" padding-100  flex column center">
           <MainButton
             text={"Pay Now"}
             width={"big-width"}

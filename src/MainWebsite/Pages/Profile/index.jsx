@@ -1,14 +1,32 @@
 import React, { useState, useEffect } from "react";
 import "./style.css";
+import { sendRequest } from "../../../core/tools/request";
+import { requestMethods } from "../../../core/enums/requestMethods";
 
 import ProfileImage from "../../../assets/profile.jpeg";
 import MainButton from "../../Components/MainButton";
 import MainInputs from "../../Components/MainInputs";
 const Profile = () => {
   const [selectedButton, setSelectedButton] = useState("Profile");
+  const [Credential, setCredential] = useState({});
   useEffect(() => {
-    console.log(selectedButton);
-  }, [selectedButton]);
+    const fetchData = async () => {
+      try {
+        const response = await sendRequest(requestMethods.GET, "/get-user/20");
+        setCredential({
+          ...Credential,
+          name: response.data.user.name,
+          email: response.data.user.email,
+          password: response.data.user.password,
+        });
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      }
+    };
+
+    fetchData();
+  }, []);
+
   return (
     <div className="flex center">
       <div className="flex column container bg-navy">
@@ -38,20 +56,61 @@ const Profile = () => {
             clickHandler={() => setSelectedButton("History")}
           />
         </div>
-        <div className="profile-section flex column center ">
-          <MainInputs type="text" placeholder="Name" />
-          <MainInputs type="Email" placeholder={"Email"} />
-          <MainInputs type="Password" placeholder={"Password"} />
-
-        
-        </div>
-        <div className="save-button flex center">
+      {  selectedButton ==="Profile"?
+        <div>
+          {" "}
+          <div className="profile-section flex column center ">
+            <MainInputs
+              type="text"
+              placeholder="Name"
+              value={Credential.name}
+              clickHandler={(e) => {
+                setCredential((prevCredential) => ({
+                  ...prevCredential,
+                  name: e,
+                }));
+              }}
+            />
+            <MainInputs
+              type="Email"
+              placeholder={"Email"}
+              value={Credential.email}
+              clickHandler={(e) => {
+                setCredential((prevCredential) => ({
+                  ...prevCredential,
+                  email: e,
+                }));
+              }}
+            />
+            <MainInputs
+              type="Password"
+              placeholder={"Password"}
+              value={Credential.password}
+            />
+          </div>
+          <div className="save-button flex center">
             <MainButton
               text={"Save"}
               width={"big-width"}
               backgroundColor={"bg-yellow"}
+              clickHandler={async () => {
+                const response = await sendRequest(
+                  requestMethods.POST,
+                  "/update-user/20",
+                  Credential
+                );
+                if (response.data.status === "success") {
+                  setCredential((prevCredential) => ({
+                    ...prevCredential,
+                    name: response.data.user.name,
+                    email: response.data.user.email,
+                  }));
+                }
+              }}
             />
           </div>
+        </div>:
+        <div></div>}
       </div>
     </div>
   );
