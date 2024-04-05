@@ -1,0 +1,10 @@
+.main-input{
+    background-color: #edeced;
+    border: none;
+    padding: 12px 15px;
+    margin: 25px 0;
+    width: 60%;
+    height: 50px;
+    
+    border-radius: 5px;
+}

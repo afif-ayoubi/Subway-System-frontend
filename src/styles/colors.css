@@ -1,45 +1,43 @@
-.primary-text {
-    color: #2F3E46;
-}
-
-.dark-text {
-    color: #212529;
-}
-
-.light-text {
-    color: #495057;
-}
-
-.off-white-text {
-    color: #DEE2E6;
-}
-.off-white-bg {
-    background-color: #DEE2E6;
-}
-.white-text {
-    color: #FFFFFF;
-}
-.place-holder-text{
-    color: #ADB5BD;
-}
-.onclick-nav-bg{
-    background-color: #ADB5BD;
-
-}
-.off-white-text {
-    color: #f8f9fa;
-}
-.light-bg{
-    background-color: #495057;
-
-}
-.primary-bg {
-    background-color: #2F3E46;
-}
-
-.secondary-bg {
-    background-color: #CAD2C5;
-}
+.color-navy {
+    color: #003059;
+  }
+  
+  .color-light-blue {
+    color: #a7d3ec;
+  }
+  
+  .color-light-gray {
+    color: #edeced;
+  }
+  
+  .color-red {
+    color: #c23616;
+  }
+  
+  .color-yellow {
+    color: #f4d03f;
+  }
+  
+  .bg-navy {
+    background-color: #003059;
+  }
+  
+  .bg-light-blue {
+    background-color: #a7d3ec;
+  }
+  
+  .bg-light-gray {
+    background-color: #edeced;
+  }
+  
+  .bg-red {
+    background-color: #c23616;
+  }
+  
+  .bg-yellow {
+    background-color: #f4d03f;
+  }
+  
 
 .off-white-bg {
     background-color: #F4F6F3;

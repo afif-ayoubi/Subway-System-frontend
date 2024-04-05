@@ -1,0 +1,11 @@
+.hero-section {
+    background-image: url('../../../assets/mainHero.jpg');
+    height: 88vh;
+    background-size: cover;
+}
+
+.search2 {
+    display: flex;
+    justify-content: center;
+    transform: translateY(600px);
+}
