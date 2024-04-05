@@ -3,16 +3,21 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faStar } from '@fortawesome/free-solid-svg-icons';
 
 const Review = () => {
-    const [rows, setRows] = useState([]);
+    const [reviews, setReviews] = useState([]);
     const [currentPage, setCurrentPage] = useState(1);
     const pageSize = 4;
 
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await fetch('https://jsonplaceholder.typicode.com/posts');
+                const response = await fetch('http://127.0.0.1:8000/api/get-all-review',{
+                    headers : {
+                        Authorization: `Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vMTI3LjAuMC4xOjgwMDAvYXBpL2xvZ2luIiwiaWF0IjoxNzEyMTkxMDU5LCJleHAiOjE3MTIxOTQ2NTksIm5iZiI6MTcxMjE5MTA1OSwianRpIjoicFN5cTFzNnpkSWRBNGlUdiIsInN1YiI6IjE4IiwicHJ2IjoiMjNiZDVjODk0OWY2MDBhZGIzOWU3MDFjNDAwODcyZGI3YTU5NzZmNyJ9.UKLk4q_0CxqugOol05PmsT9W_RCH4ivVuEo9LJdKuCU`
+                    }
+                });
                 const data = await response.json();
-                setRows(data);
+                setReviews(data.reviews);
+                console.log(data)
             } catch (error) {
                 console.error('Error fetching data:', error);
             }
@@ -21,19 +26,19 @@ const Review = () => {
         fetchData();
     }, []);
 
-    const totalPages = Math.ceil(rows.length / pageSize);
+    const totalPages = Math.ceil(reviews.length / pageSize);
 
     const PageChange = (page) => {
         setCurrentPage(page);
     };
 
     const Delete = (id) => {
-        setRows(prevRows => prevRows.filter(row => row.id !== id));
+        setReviews(prevReviews => prevReviews.filter(reviews => reviews.id !== id));
     };
 
     const startIndex = (currentPage - 1) * pageSize;
     const endIndex = startIndex + pageSize;
-    const displayRows = rows.slice(startIndex, endIndex);
+    const displayRiviews = reviews.slice(startIndex, endIndex);
 
     return (
         <div className="rev flex column  center">
@@ -42,10 +47,10 @@ const Review = () => {
             </div>
             <div className=" cardss flex center ">
                
-                    {displayRows.map(row =>( <div className="card-review flex column">
-                         <div className="user-review flex">
+                    {displayRiviews.map(review =>( <div key ={review.id} className="card-review flex column">
+                         <div  className="user-review flex">
                         <div>
-                            <h2>{row.title}</h2>
+                            <h2>{review.user_id}</h2>
                         </div>
                         <div>
 
@@ -54,7 +59,7 @@ const Review = () => {
                     </div>
                     
                     <div className="comment">
-                        <p>{row.body}</p>
+                        <p>{review.comment}</p>
                     </div>
                     
                     <div className="btn flex ">
@@ -66,7 +71,7 @@ const Review = () => {
                         <FontAwesomeIcon icon={faStar} style={{color: "#FFD43B",}} />
                         </div>
                         
-                        <button onClick={() => Delete(row.id)}>delete</button>
+                        <button onClick={() => Delete(review.id)}>delete</button>
                     </div>
                 </div>
                     ))}
