@@ -50,7 +50,7 @@ const Authentication = () => {
                 if (res.data.status === "success") {
                   localStorage.setItem("token", res.data.token);
 
-                  // navigate("/");
+                  navigate("/");
                 }
               }}
             >
@@ -88,7 +88,8 @@ const Authentication = () => {
                   Credential
                 );
                 if (resp.data.status === "success") {
-                  localStorage.setItem("token", resp.data.token);
+                  localStorage.setItem("token", resp.data.authorization.token);
+                  navigate("/");
                 }
               }}  
             >
