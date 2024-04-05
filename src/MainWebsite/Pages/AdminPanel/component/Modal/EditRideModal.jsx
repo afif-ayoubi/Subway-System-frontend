@@ -25,7 +25,7 @@ const EditRidePopup = ({ onClose, ride }) => {
             });
 
             console.log("Ride updated successfully:", editedRide);
-            onClose();
+            // onClose();
         } catch (error) {
             console.error('Error updating ride:', error.message);
         }
