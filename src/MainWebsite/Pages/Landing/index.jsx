@@ -5,11 +5,18 @@ import StationList from './components/StationList'
 import Review from './components/Review'
 import Footer from '../../Components/Footer'
 import './style.css'
+import { useNavigate } from 'react-router-dom'
 
 const Landing = () => {
+  const navigate = useNavigate();
+
+  const handleLoginClick = (route) => {
+    navigate(route);
+  };
+
   return (
     <div>
-      <Header />
+      <Header nav1="Home" nav2="Profile" nav3="Login" clickHandler3={() => handleLoginClick("/Authentication")} />
       <Hero />
       <StationList />
       <Review />
@@ -17,4 +24,5 @@ const Landing = () => {
     </div>
   );
 };
+
 export default Landing;

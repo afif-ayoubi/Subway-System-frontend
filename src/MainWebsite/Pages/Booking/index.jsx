@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import "./style.css";
+import { useNavigate } from "react-router-dom";
 import Money from "../../../assets/Frame.png";
 import MainButton from "../../Components/MainButton";
 const Booking = () => {
@@ -7,6 +8,7 @@ const Booking = () => {
   const [options, useOptions] = useState(["Tickets", "passes"]);
   const [selectedStation, setSelectedStation] = useState("Name of the station");
   const [balance, setBalance] = useState(0);
+  const navigate = useNavigate();
 
   const handleSelectChange = (event) => {
     setSelectedOption(event.target.value);
