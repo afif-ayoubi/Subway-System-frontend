@@ -10,6 +10,7 @@ const Stations = ()=>{
     const [currentPage, setCurrentPage] = useState(1);
 
     const [showpop,setShowPop] = useState(false)
+    const [editingStation, setEditingStation] = useState(null);
     
     const pageSize = 7;
  
@@ -20,7 +21,7 @@ const Stations = ()=>{
             try {
                 const response = await fetch('http://127.0.0.1:8000/api/get-all-stations',{
                     headers : {
-                        Authorization: `Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vMTI3LjAuMC4xOjgwMDAvYXBpL2xvZ2luIiwiaWF0IjoxNzEyMjU4ODc5LCJleHAiOjE3MTIyNjI0NzksIm5iZiI6MTcxMjI1ODg3OSwianRpIjoiMWk2MFMwdEhUbkhiWlBTSiIsInN1YiI6IjE4IiwicHJ2IjoiMjNiZDVjODk0OWY2MDBhZGIzOWU3MDFjNDAwODcyZGI3YTU5NzZmNyJ9.7JuHUOxhdeNPc6zGVC2jbELMtBZEDV11ij6onsua-ks`
+                        Authorization: `Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vMTI3LjAuMC4xOjgwMDAvYXBpL2xvZ2luIiwiaWF0IjoxNzEyMjYyNjE1LCJleHAiOjE3MTI4Njc0MTUsIm5iZiI6MTcxMjI2MjYxNSwianRpIjoiTFAzSGxlcWRHRkwwUlplViIsInN1YiI6IjE4IiwicHJ2IjoiMjNiZDVjODk0OWY2MDBhZGIzOWU3MDFjNDAwODcyZGI3YTU5NzZmNyJ9.19yz9cZNYDcAKgkxGJauNrT_zh39TIOMEHeC-BDIiX0`
 
                     }
                 });
@@ -38,6 +39,7 @@ const Stations = ()=>{
     const totalPages = Math.ceil(stations.length / pageSize);
 
     const PageChange = (page) => {
+
         setCurrentPage(page);
     };
 
@@ -46,7 +48,8 @@ const Stations = ()=>{
     const endIndex = startIndex + pageSize;
     const displayStations = stations.slice(startIndex, endIndex);
 
-    const togglePopup = () => {
+    const togglePopup = (station) => {
+        setEditingStation(station)
         setShowPop(!showpop);
     };
 
@@ -79,7 +82,8 @@ const Stations = ()=>{
                         <td>{stations.facilities}</td>
                         <td>{stations.service_status}</td>
                         <td className="actions">
-                            <button onClick={togglePopup}>Edit</button>
+                            {/* <button onClick={togglePopup}>Edit</button> */}
+                            <button className="edit" onClick={() => togglePopup(stations)}>Edit</button>
                         </td>
                     </tr>
                 ))}
@@ -95,7 +99,7 @@ const Stations = ()=>{
     <ChatPopup />
      </>
             )}
-            {showpop && <EditPopup onClose={togglePopup} />}
+           {showpop && <EditPopup onClose={togglePopup} station={editingStation} />}
 </div>
 
     )
